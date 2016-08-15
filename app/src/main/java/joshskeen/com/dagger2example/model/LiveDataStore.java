@@ -3,6 +3,7 @@ package joshskeen.com.dagger2example.model;
 public class LiveDataStore implements DataStore {
 
     private String mValue;
+    private int mTimesCalled;
 
     public LiveDataStore(String message) {
         mValue = message;
@@ -10,7 +11,8 @@ public class LiveDataStore implements DataStore {
 
     @Override
     public String getExampleValue() {
-        return mValue;
+        mTimesCalled++;
+        return mValue + " - object id:" + this.hashCode() + "\n number times called: " + mTimesCalled;
     }
 
     @Override
@@ -18,3 +20,4 @@ public class LiveDataStore implements DataStore {
         mValue = value;
     }
 }
+z

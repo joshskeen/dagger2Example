@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         component.inject(this);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.printButton.setOnClickListener(v -> binding.printResult.setText(mDataStore.getExampleValue()));
-        mDataStore.getExampleValue();
     }
 
 }

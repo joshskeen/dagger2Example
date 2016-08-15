@@ -1,16 +1,19 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.android.databinding'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+
+    dataBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "joshskeen.com.dagger2example"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -25,15 +28,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     retrolambda {
-        jvmArgs '-noverify'
+        javaVersion JavaVersion.VERSION_1_6
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    apt 'com.android.databinding:compiler:1.0-rc1'
-    compile 'com.google.dagger:dagger:2.0.1'
-    apt 'com.google.dagger:dagger-compiler:2.0.1'
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.google.dagger:dagger:2.6'
+    apt 'com.google.guava:guava:19.0' // needed by Dagger
+    apt 'com.google.dagger:dagger-compiler:2.6'
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+    compile 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 }
